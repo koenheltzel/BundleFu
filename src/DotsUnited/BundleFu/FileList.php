@@ -36,7 +36,7 @@ class FileList implements \Iterator, \Countable
      * @param  \SplFileInfo $fileInfo
      * @return FileList
      */
-    public function addFile($file, $fileInfo)
+    public function addFile($file, $fileInfo): FileList
     {
         if (!($fileInfo instanceof \SplFileInfo)) {
             $fileInfo = new \SplFileInfo($fileInfo);
@@ -62,7 +62,7 @@ class FileList implements \Iterator, \Countable
      *
      * @return FileList
      */
-    public function reset()
+    public function reset(): FileList
     {
         $this->files    = array();
         $this->maxMTime = 0;
@@ -75,7 +75,7 @@ class FileList implements \Iterator, \Countable
      *
      * @return integer
      */
-    public function getMaxMTime()
+    public function getMaxMTime(): int
     {
         return $this->maxMTime;
     }
@@ -85,7 +85,7 @@ class FileList implements \Iterator, \Countable
      *
      * @return string
      */
-    public function getHash()
+    public function getHash(): string
     {
         return md5(implode('', array_keys($this->files)));
     }
@@ -95,7 +95,7 @@ class FileList implements \Iterator, \Countable
      *
      * @return void
      */
-    public function rewind()
+    public function rewind(): void
     {
         reset($this->files);
     }
@@ -105,7 +105,7 @@ class FileList implements \Iterator, \Countable
      *
      * @return \SplFileInfo
      */
-    public function current()
+    public function current(): mixed
     {
         if ($this->valid() === false) {
             // @codeCoverageIgnoreStart
@@ -121,7 +121,7 @@ class FileList implements \Iterator, \Countable
      *
      * @return string
      */
-    public function key()
+    public function key(): string
     {
         return key($this->files);
     }
@@ -131,7 +131,7 @@ class FileList implements \Iterator, \Countable
      *
      * @return void
      */
-    public function next()
+    public function next(): void
     {
         next($this->files);
     }
@@ -141,7 +141,7 @@ class FileList implements \Iterator, \Countable
      *
      * @return boolean False if there's nothing more to iterate over
      */
-    public function valid()
+    public function valid(): bool
     {
         return current($this->files) !== false;
     }
@@ -151,7 +151,7 @@ class FileList implements \Iterator, \Countable
      *
      * @return int
      */
-    public function count()
+    public function count(): int
     {
         return count($this->files);
     }
